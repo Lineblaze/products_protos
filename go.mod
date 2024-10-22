@@ -1,4 +1,4 @@
-module products_protos
+module github.com/Lineblaze/products_protos
 
 go 1.22.8
 
