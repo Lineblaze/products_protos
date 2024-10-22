@@ -1,0 +1,105 @@
+syntax = "proto3";
+
+package products;
+
+option go_package = "products.v1;productsv1";
+
+service ProductService {
+  // CRUD для категорий товаров
+  rpc CreateProductCategory(CreateProductCategoryRequest) returns (ProductCategoryResponse);
+  rpc GetProductCategory(GetProductCategoryRequest) returns (ProductCategoryResponse);
+  rpc UpdateProductCategory(UpdateProductCategoryRequest) returns (ProductCategoryResponse);
+  rpc DeleteProductCategory(DeleteProductCategoryRequest) returns (DeleteProductCategoryResponse);
+  rpc GetProductCategories(GetProductCategoriesRequest) returns (GetProductCategoriesResponse);
+
+  // CRUD для товаров
+  rpc CreateProduct(CreateProductRequest) returns (ProductResponse);
+  rpc GetProduct(GetProductRequest) returns (ProductResponse);
+  rpc UpdateProduct(UpdateProductRequest) returns (ProductResponse);
+  rpc DeleteProduct(DeleteProductRequest) returns (DeleteProductResponse);
+  rpc GetProducts(GetProductsRequest) returns (GetProductsResponse);
+}
+
+message ProductCategory {
+  int64 id = 1;
+  string name = 2;
+  string description = 3;
+}
+
+message Product {
+  int64 id = 1;
+  string name = 2;
+  string description = 3;
+  float price = 4;
+  int64 category_id = 5;
+}
+
+message CreateProductCategoryRequest {
+  string name = 1;
+  string description = 2;
+}
+
+message GetProductCategoryRequest {
+  int64 id = 1;
+}
+
+message UpdateProductCategoryRequest {
+  int64 id = 1;
+  string name = 2;
+  string description = 3;
+}
+
+message DeleteProductCategoryRequest {
+  int64 id = 1;
+}
+
+message ProductCategoryResponse {
+  ProductCategory category = 1;
+}
+
+message DeleteProductCategoryResponse {
+  string message = 1;
+}
+
+message GetProductCategoriesRequest {}
+
+message GetProductCategoriesResponse {
+  repeated ProductCategory categories = 1;
+}
+
+message CreateProductRequest {
+  string name = 1;
+  string description = 2;
+  float price = 3;
+  int64 category_id = 4;
+}
+
+message GetProductRequest {
+  int64 id = 1;
+}
+
+message UpdateProductRequest {
+  int64 id = 1;
+  string name = 2;
+  string description = 3;
+  float price = 4;
+  int64 category_id = 5;
+}
+
+message DeleteProductRequest {
+  int64 id = 1;
+}
+
+message ProductResponse {
+  Product product = 1;
+}
+
+message DeleteProductResponse {
+  string message = 1;
+}
+
+message GetProductsRequest {}
+
+message GetProductsResponse {
+  repeated Product products = 1;
+}
